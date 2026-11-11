@@ -1,0 +1,17 @@
+country,region,region_code,population,ref_year,source_id,status
+KSA,Riyadh,RIY,8591748,2022,S1,verified_secondary
+KSA,Makkah,MAK,8021463,2022,S1,verified_secondary
+KSA,Eastern Province,EAS,5125254,2022,S1,verified_secondary
+KSA,Madinah,MED,2137983,2022,S1,verified_secondary
+KSA,Asir,ASI,2024285,2022,S1,verified_secondary
+KSA,Jazan,JAZ,1404997,2022,S1,verified_secondary
+KSA,Qassim,QAS,1336179,2022,S1,verified_secondary
+KSA,Tabuk,TAB,886036,2022,S1,verified_secondary
+KSA,Hail,HAI,746406,2022,S1,verified_secondary
+KSA,Al Jouf,JOU,595822,2022,S1,verified_secondary
+KSA,Najran,NAJ,592300,2022,S1,verified_secondary
+KSA,Northern Borders,NBR,373577,2022,S1,verified_secondary
+KSA,Al Baha,BAH,339174,2022,S1,verified_secondary
+UAE,Dubai,DXB,4580000,2025,S2,verified
+UAE,Abu Dhabi,AUH,4135985,2024,S3,verified
+UAE,Sharjah & Northern Emirates,SHJ,3000000,2025,A1,assumption

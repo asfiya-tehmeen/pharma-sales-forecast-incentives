@@ -1,0 +1,15 @@
+{
+  "note": "Run-1 method: 12-month LightGBM forecast NOT reconciled to the national budget.",
+  "target_year_forecast_total_vs_actual": 0.2649256121410646,
+  "by_product_forecast_vs_actual": {
+    "CAR": -0.0208,
+    "GLU": 0.1329,
+    "SEM": 0.406
+  },
+  "median_percentile": 0.0,
+  "n_flagged": 1,
+  "flagged": [
+    "KSA-RIY-08"
+  ],
+  "p10_p90_coverage_of_actual_2025": 0.0
+}

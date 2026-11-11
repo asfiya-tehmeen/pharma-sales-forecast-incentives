@@ -1,0 +1,85 @@
+{
+  "E1_ramadan_eid": {
+    "ramadan": {
+      "log_coef": -0.14128679378042563,
+      "se": 0.029632108624128246,
+      "implied_daily_multiplier": 0.8682402700782076,
+      "ci95_multiplier": [
+        0.8192502168714759,
+        0.9201598621044267
+      ]
+    },
+    "pre_ramadan": {
+      "log_coef": 0.06551101671946491,
+      "se": 0.03698523605019574,
+      "implied_daily_multiplier": 1.0677044998496519,
+      "ci95_multiplier": [
+        0.9930442580013195,
+        1.1479779373515904
+      ]
+    },
+    "eid": {
+      "log_coef": -0.8962252574302854,
+      "se": 0.23618418918455542,
+      "implied_daily_multiplier": 0.4081072557315716,
+      "ci95_multiplier": [
+        0.25687998997368217,
+        0.6483631994762141
+      ]
+    }
+  },
+  "E2_launch": {
+    "t_mid_month": 18.101040614156485,
+    "t_mid_se": 0.2727398779982678,
+    "scale": 3.4547909476668113,
+    "scale_se": 0.22429914148877167,
+    "first_month_with_sales": 7
+  },
+  "E3_stockout_months": {
+    "CAR": [],
+    "GLU": [],
+    "SEM": [
+      21,
+      22,
+      33
+    ]
+  },
+  "E4_generic_entry": {
+    "entry_month": 20,
+    "tau": 5.5,
+    "max_loss": 0.4704693383451751
+  },
+  "E5_vacancy": {
+    "sales_multiplier": 0.6544788408916152,
+    "ci95": [
+      0.6359845192965399,
+      0.6735109742114797
+    ],
+    "vacancy_windows_from_roster": [
+      {
+        "territory_code": "KSA-ASI-02",
+        "first_month": "2024-04-01",
+        "last_month": "2024-06-01",
+        "months": 3
+      },
+      {
+        "territory_code": "KSA-MAK-06",
+        "first_month": "2024-02-01",
+        "last_month": "2024-05-01",
+        "months": 4
+      },
+      {
+        "territory_code": "UAE-DXB-03",
+        "first_month": "2023-05-01",
+        "last_month": "2023-07-01",
+        "months": 3
+      },
+      {
+        "territory_code": "UAE-SHJ-01",
+        "first_month": "2025-05-01",
+        "last_month": "2025-07-01",
+        "months": 3
+      }
+    ]
+  }
+}

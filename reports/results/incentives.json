@@ -1,0 +1,47 @@
+{
+  "issued": {
+    "fairness_spread_iqr_pp": 62.1425,
+    "fairness_spread_sd_pp": 37.03140509791171,
+    "n_flagged": 22,
+    "mc_cost_mean_pct_of_budget": 100.0637894745123,
+    "mc_cost_p90_pct_of_budget": 107.37629814791883,
+    "mc_gini_mean": 0.12072483623977982,
+    "mc_zero_payout_share_mean": 0.0286475,
+    "actual_cost_pct_of_budget": 57.683220043573854,
+    "actual_gini": 0.2628994674739067,
+    "actual_zero_payout_reps": 7,
+    "actual_attainment_min": 0.7209559480541158,
+    "actual_attainment_max": 1.0539018493261032,
+    "flag_delta": 0.25
+  },
+  "last_year_plus_x": {
+    "fairness_spread_iqr_pp": 72.585,
+    "fairness_spread_sd_pp": 37.32970019524222,
+    "n_flagged": 25,
+    "mc_cost_mean_pct_of_budget": 100.07972502320503,
+    "mc_cost_p90_pct_of_budget": 107.94769995620601,
+    "mc_gini_mean": 0.10488856549695165,
+    "mc_zero_payout_share_mean": 0.0025825,
+    "actual_cost_pct_of_budget": 45.22457507118801,
+    "actual_gini": 0.3984053304838733,
+    "actual_zero_payout_reps": 13,
+    "actual_attainment_min": 0.8278029936292184,
+    "actual_attainment_max": 1.0387902399250881,
+    "flag_delta": 0.25
+  },
+  "potential_based": {
+    "fairness_spread_iqr_pp": 99.965,
+    "fairness_spread_sd_pp": 48.08244172772427,
+    "n_flagged": 38,
+    "mc_cost_mean_pct_of_budget": 80.02625340458654,
+    "mc_cost_p90_pct_of_budget": 90.46369984294019,
+    "mc_gini_mean": 0.3655218719778346,
+    "mc_zero_payout_share_mean": 0.25249,
+    "actual_cost_pct_of_budget": 43.97814082734518,
+    "actual_gini": 0.6338984865784425,
+    "actual_zero_payout_reps": 23,
+    "actual_attainment_min": 0.6604793039559236,
+    "actual_attainment_max": 1.5947928537603795,
+    "flag_delta": 0.25
+  }
+}

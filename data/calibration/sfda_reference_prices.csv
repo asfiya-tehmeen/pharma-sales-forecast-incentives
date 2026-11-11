@@ -1,0 +1,62 @@
+molecule,trade_name,dosage_form,strength_raw,price_sar,register_no
+atorvastatin calcium,TULIP 10 mg film-coated tablet,Film-coated tablet,10,15.35,0905233605
+atorvastatin calcium,ASTATIN 10MG F.C TABLETS,Film-coated tablet,10,43.45,0912211439
+atorvastatin calcium,ATORLIP 10 mg film-coated tablet,Film-coated tablet,10,43.45,1012258768
+atorvastatin calcium,Aztolyp,Film-coated tablet,10,43.45,2012234600
+atorvastatin calcium,TORVACOL 10MG F.C. TABLETS,Film-coated tablet,10,43.45,0909258190
+atorvastatin calcium,ATORVA 10MG F.C. TABLETS,Film-coated tablet,10,43.45,0807245492
+atorvastatin calcium,LIPICURE 10 mg film-coated tablet,Film-coated tablet,10,43.45,1108257996
+atorvastatin calcium,TOVAST 10 MG F-C TABLETS,Film-coated tablet,10,43.45,1411211317
+atorvastatin calcium,LD-NOR 10 mg film-coated tablet,Film-coated tablet,10,43.45,2405233718
+atorvastatin calcium,Atorva,Film-coated tablet,10,172.6,2208245804
+atorvastatin calcium,ATORVA 10MG F.C. TABLETS,Film-coated tablet,10,724.0,361-334-22
+atorvastatin calcium,TULIP 20 mg film-coated tablet,Film-coated tablet,20,22.65,0905233604
+atorvastatin calcium,ASTATIN 20MG F.C TABLETS,Film-coated tablet,20,43.45,0912211440
+atorvastatin calcium,ATORVA 20MG F.C. TABLETS,Film-coated tablet,20,43.45,0807245491
+atorvastatin calcium,ATORLIP 20 mg film-coated tablet,Film-coated tablet,20,43.45,1012258767
+atorvastatin calcium,LD-NOR 20 mg film-coated tablet,Film-coated tablet,20,43.45,2405233717
+atorvastatin calcium,TOVAST 20 MG F-C TABLETS,Film-coated tablet,20,43.45,1411211318
+atorvastatin calcium,TORVACOL 20MG F.C. TABLETS,Film-coated tablet,20,43.45,2509305987
+atorvastatin calcium,Aztolyp,Film-coated tablet,20,43.45,2012234602
+atorvastatin calcium,LIPICURE 20 mg film-coated tablet,Film-coated tablet,20,43.45,1108257977
+atorvastatin calcium,Atorva,Film-coated tablet,20,172.6,2208245807
+atorvastatin calcium,ATORVA 20MG F.C. TABLETS,Film-coated tablet,20,724.0,362-334-22
+atorvastatin calcium,TULIP 40 mg film-coated tablet,Film-coated tablet,40,31.9,0905233607
+atorvastatin calcium,Aztolyp,Film-coated tablet,40,86.9,2012234603
+atorvastatin calcium,ATORVA 40MG F.C. TABLETS,Film-coated tablet,40,86.9,0807245497
+atorvastatin calcium,ATORLIP 40 mg film-coated tablet,Film-coated tablet,40,86.9,1012258766
+atorvastatin calcium,LD-NOR 40 mg film-coated tablet,Film-coated tablet,40,86.9,2405233716
+atorvastatin calcium,TORVACOL 40MG F.C. TABLETS,Film-coated tablet,40,86.9,2909245967
+atorvastatin calcium,LIPICURE 40 mg film-coated tablet,Film-coated tablet,40,86.9,1108257983
+atorvastatin calcium,ASTATIN 40MG F.C TABLETS,Film-coated tablet,40,86.9,1111211302
+atorvastatin calcium,TOVAST 40 MG F-C TABLETS,Film-coated tablet,40,86.9,1411211319
+atorvastatin calcium,Atorva,Film-coated tablet,40,304.8,2208245805
+atorvastatin calcium,ATORVA 40MG F.C. TABLETS,Film-coated tablet,40,1448.0,363-334-22
+atorvastatin calcium,TULIP 80 mg film-coated tablet,Film-coated tablet,80,48.7,0905233608
+atorvastatin calcium,ATORVA 80MG F.C. TABLETS,Film-coated tablet,80,86.9,0807245496
+atorvastatin calcium,ATORVA 80MG F.C. TABLETS,Film-coated tablet,80,1448.0,364-334-22
+semaglutide,Ozempic,Solution for injection in pre-filled pen,0.25,418.65,2701200005
+semaglutide,Wegovy,Solution for injection in pre-filled pen,0.25,481.45,2101256701
+semaglutide,Ozempic,Solution for injection in pre-filled pen,0.5,418.65,2701200004
+semaglutide,Wegovy,Solution for injection in pre-filled pen,0.5,481.45,2101256698
+semaglutide,Ozempic,Solution for injection in pre-filled pen,1,418.65,2701200003
+semaglutide,Wegovy,Solution for injection in pre-filled pen,1,481.45,2101256699
+semaglutide,Glucentra,Solution for injection in pre-filled pen,1.34,322.15,0202269049
+semaglutide,Glucentra,Solution for injection in pre-filled pen,1.34,322.15,0202269048
+semaglutide,Lugyda,Solution for injection in pre-filled pen,1.34,357.95,1612258794
+semaglutide,Lugyda,Solution for injection in pre-filled pen,1.34,357.95,1612258795
+semaglutide,Tasylev,Solution for injection in pre-filled pen,1.34,397.7,0206257517
+semaglutide,Tasylev,Solution for injection in pre-filled pen,1.34,397.7,0206257518
+semaglutide,Wegovy,Solution for injection in pre-filled pen,1.7,818.45,2101256700
+semaglutide,Wegovy,Solution for injection in pre-filled pen,2.4,1155.45,2101256697
+semaglutide,Tasylev,Solution for injection in pre-filled pen,2.68,397.7,2304269505
+semaglutide,Rybelsus,Tablet,3,456.7,0305210710
+semaglutide,Rybelsus,Tablet,7,456.7,0305210711
+semaglutide,Rybelsus,Tablet,14,456.7,0305210707
+sitagliptin,Balivio,Film-coated tablet,25,24.55,1012258776
+sitagliptin,Glytix,Film-coated tablet,25,31.25,0103269209
+sitagliptin,Balivio,Film-coated tablet,50,45.0,1012258778
+sitagliptin,Glytix,Film-coated tablet,50,45.0,0103269208
+sitagliptin,Maysiglu,Film-coated tablet,100,81.95,1609258225
+sitagliptin,Balivio,Film-coated tablet,100,84.2,1012258777
+sitagliptin,Glytix,Film-coated tablet,100,84.2,0103269207

@@ -1,0 +1,131 @@
+{
+  "n_territories": 40,
+  "n_flagged_issued": 22,
+  "flagged": [
+    {
+      "territory_code": "KSA-ASI-02",
+      "direction": "easy",
+      "target_percentile": 0.0
+    },
+    {
+      "territory_code": "KSA-BAH-01",
+      "direction": "easy",
+      "target_percentile": 0.0
+    },
+    {
+      "territory_code": "KSA-EAS-01",
+      "direction": "hard",
+      "target_percentile": 0.7751
+    },
+    {
+      "territory_code": "KSA-EAS-02",
+      "direction": "hard",
+      "target_percentile": 0.6525
+    },
+    {
+      "territory_code": "KSA-HAI-01",
+      "direction": "hard",
+      "target_percentile": 0.9167
+    },
+    {
+      "territory_code": "KSA-JAZ-01",
+      "direction": "hard",
+      "target_percentile": 0.6705
+    },
+    {
+      "territory_code": "KSA-MAK-01",
+      "direction": "hard",
+      "target_percentile": 0.9978
+    },
+    {
+      "territory_code": "KSA-MAK-02",
+      "direction": "hard",
+      "target_percentile": 0.6795
+    },
+    {
+      "territory_code": "KSA-MAK-03",
+      "direction": "hard",
+      "target_percentile": 0.9962
+    },
+    {
+      "territory_code": "KSA-MAK-06",
+      "direction": "easy",
+      "target_percentile": 0.0
+    },
+    {
+      "territory_code": "KSA-MAK-07",
+      "direction": "easy",
+      "target_percentile": 0.0003
+    },
+    {
+      "territory_code": "KSA-MED-01",
+      "direction": "easy",
+      "target_percentile": 0.011
+    },
+    {
+      "territory_code": "KSA-NAJ-01",
+      "direction": "hard",
+      "target_percentile": 0.9124
+    },
+    {
+      "territory_code": "KSA-NBR-01",
+      "direction": "easy",
+      "target_percentile": 0.0
+    },
+    {
+      "territory_code": "KSA-QAS-01",
+      "direction": "hard",
+      "target_percentile": 0.9474
+    },
+    {
+      "territory_code": "KSA-RIY-02",
+      "direction": "hard",
+      "target_percentile": 0.6612
+    },
+    {
+      "territory_code": "KSA-RIY-03",
+      "direction": "hard",
+      "target_percentile": 0.9979
+    },
+    {
+      "territory_code": "KSA-RIY-07",
+      "direction": "hard",
+      "target_percentile": 0.9838
+    },
+    {
+      "territory_code": "KSA-RIY-08",
+      "direction": "hard",
+      "target_percentile": 1.0
+    },
+    {
+      "territory_code": "KSA-TAB-01",
+      "direction": "easy",
+      "target_percentile": 0.0
+    },
+    {
+      "territory_code": "UAE-AUH-01",
+      "direction": "hard",
+      "target_percentile": 0.5842
+    },
+    {
+      "territory_code": "UAE-DXB-03",
+      "direction": "easy",
+      "target_percentile": 0.0
+    }
+  ],
+  "median_percentile_issued": 0.2663,
+  "p10_p90_coverage_of_actual_2025": 0.15,
+  "residual_months_used": [
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    23,
+    24
+  ],
+  "target_year_forecast_total_vs_actual": 0.08651152687477537
+}

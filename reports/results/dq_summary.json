@@ -1,0 +1,10 @@
+{
+  "clean_lines": 28803,
+  "duplicate_rows_removed": 200,
+  "late_rows_reassigned": 1587,
+  "quarantined_non_positive_sale": 8,
+  "quarantined_unknown_product": 6,
+  "restated_lines_resolved": 117,
+  "rows_received": 29134,
+  "valid_return_lines_kept": 4034
+}

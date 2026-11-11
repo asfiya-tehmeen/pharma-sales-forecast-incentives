@@ -2,10 +2,20 @@
 
 # Fair Targets: Ramadan-Aware Forecasting and Incentive Fairness for a GCC Pharma Affiliate
 
-**Status:** Not started | **Data:** HYBRID (simulated, calibrated to public data) | **Effort:** 5 days
+**Status:** Complete: pipeline, memo and Power BI dashboard (seed 42, 51 tests passing) | **Data:** HYBRID (simulated, calibrated to public data) | **Effort:** 5 days
 **Target roles:** Commercial Excellence, Sales Force Effectiveness (SFE), Business Insights & Analytics at GCC pharma affiliates and consultancies.
 
 Earlier versions: [`docs/original-brief.md`](docs/original-brief.md)
+
+**Quick links:**
+- Memo to the SFE head: [`reports/REPORT.md`](reports/REPORT.md)
+- Effect scorecard: [`reports/SCORECARD.md`](reports/SCORECARD.md)
+- Power BI dashboard: [`reports/powerbi/fair_targets.pbix`](reports/powerbi/fair_targets.pbix)
+- Calibration sources: [`docs/calibration.md`](docs/calibration.md)
+
+![Power BI dashboard: 2025 Targets, Fair or Not?](reports/figures/05_powerbi_dashboard.png)
+
+*One-page Power BI dashboard on simulated data. It has 5 KPI cards, the target-fairness dot plot, attainment by territory, forecast vs actual with Ramadan months shaded, and the flagged-territories table, plus a drill-through page for each territory.*
 
 ---
 
@@ -48,7 +58,7 @@ A GCC pharma affiliate sets annual sales targets for about 40 reps. Two things g
 | E3 | Semavia stock-out months | Stock-out months flagged by the anomaly checks vs the planted months |
 | E4 | Glucora generic entry | Change point found vs planted month |
 | E5 | Rep vacancies (a few territories, 2–4 months) | Vacancy months detected from zero/near-zero activity |
-| E6 | About 5 unfairly targeted territories (realistic causes: "last year + X%" after a vacancy year, potential growth not reflected) | **Precision and recall** of fairness flags |
+| E6 | About 5 unfairly targeted territories (realistic causes: "last year + X%" after a vacancy year, a new account not in the base year, manual top-down uplifts) | **Precision and recall** of fairness flags |
 
 **Answer key rule:** the generator writes `data/raw/answer_key.json`. Only the final scoring step (`src/fairtargets/scorecard.py`) reads it. A test fails if any other module references it.
 
@@ -69,14 +79,14 @@ All of this is SQL in `sql/`, run by a small Python runner:
 - `05_kpi_views.sql`: views for **attainment vs target**, **payout calculation** (threshold, linear band, cap), and **like-for-like growth** (same territory-product pairs active in both periods, excluding vacancy months and the launch product).
 
 ### C. Forecasting ladder
-- Models: **seasonal naive → ETS → one global LightGBM** (lags, rolling means, Gregorian month, and Hijri features: Ramadan-day share, Eid days, working days).
+- Models: **seasonal naive → ETS → one global LightGBM** (lags, recent level, lifecycle and vacancy features, Gregorian month, and Hijri features: share of the month in Ramadan, in the 10 pre-Ramadan days and in Eid holidays, this year and the same month last year).
 - **Rolling-origin backtest**: forecast origins at months 24–33, horizons of 1–3 months, so every model has at least 2 full seasons to train on. Metrics: **WAPE and bias by product**.
 - **Target-year forecast** (for fairness): a single 12-month forecast using data through month 24 only, so it never sees year-3 actuals.
 - **Gregorian-only vs Hijri-aware** LightGBM, compared overall and in Ramadan/Eid months.
 - If a model does not beat seasonal naive, the report says so.
 
 ### D. Fairness core
-- Year-3 forecast distribution per territory: the point forecast from the chosen model, plus an empirical spread from bootstrapped backtest errors.
+- Year-3 forecast distribution per territory: the point forecast from the chosen model, **scaled so each product sums to the national budget** (top-down reconciliation; added after run 1, see REPORT.md section 4), plus an empirical spread from bootstrapped one-month-ahead backtest errors in 2024.
 - **Target percentile** = where the official target sits in that territory's distribution.
 - Flag territories whose percentile is far from the median (threshold set before scoring and documented).
 - Final scoring step: precision and recall of the flags against the answer key.
@@ -85,11 +95,17 @@ All of this is SQL in `sql/`, run by a small Python runner:
 - Two target-setting rules: **"last year + X%"** vs **potential-based** (national target split by share of potential).
 - Monte Carlo draws from the forecast distribution. Outputs per rule: **payout cost** (mean and P90 vs budget), **Gini of payouts**, and **fairness spread** (spread of target percentiles across territories).
 
-### F. Power BI handoff (instead of an app)
+### F. Power BI dashboard (instead of an app)
 `reports/powerbi/` contains:
-- A star schema as CSV: `fact_sales`, `fact_targets`, `dim_rep`, `dim_territory`, `dim_product`, `dim_date` (with Hijri fields).
-- `MEASURES.md`: DAX for attainment %, payout, forecast error (WAPE, bias), and fairness percentile.
-- `LAYOUT.md`: a one-page dashboard layout spec.
+- **A star schema as CSV:**
+  - fact tables: `fact_sales`, `fact_targets`, `fact_forecast` (backtest and target-year forecasts), `fact_fairness` (target percentiles for each territory and rule)
+  - dimensions: `dim_rep`, `dim_territory`, `dim_product`, `dim_date` (daily, with Hijri, Ramadan, Eid and KSA/UAE holiday fields)
+- **`MEASURES.md`:** DAX for attainment %, payout, forecast error (WAPE, bias) and fairness percentile, plus the expected values to check against.
+- **`LAYOUT.md`:** the one-page layout spec.
+- **`fair_targets.pbix`:** the built dashboard, with one main page and a drill-through page per territory.
+- **`VALIDATION.md`:** 22 checks of the Power BI model against the warehouse (totals, attainment, payout, WAPE by model, flag counts, row counts). All pass.
+
+The dashboard imports the CSVs from absolute paths on the build machine. If you clone the repo, repoint the sources in Power Query before refreshing.
 
 ### G. Report
 `reports/REPORT.md` is written as a memo to an SFE head. It covers which forecast model to use, how to set targets, which territories to adjust, and which planted effects were recovered or missed.
@@ -100,20 +116,24 @@ All of this is SQL in `sql/`, run by a small Python runner:
 
 ## 6. Stack and structure
 
-Python, DuckDB SQL, pandas, statsforecast (seasonal naive, ETS), LightGBM, hijridate, holidays, matplotlib, pytest.
+Python, DuckDB SQL, pandas, statsforecast (ETS), LightGBM, SciPy, hijridate (Umm al-Qura), holidays, matplotlib, pytest, Power BI (DAX).
 
 ```
-data/raw/          generator output + answer_key.json (read only by scorecard.py)
-data/clean/        warehouse.duckdb
+data/calibration/  public inputs: regions.csv, country_diabetes.csv, sfda_reference_prices.csv (committed)
+data/raw/          generator output + answer_key.json (read only by scorecard.py; git-ignored, regenerated)
+data/clean/        warehouse.duckdb (git-ignored, regenerated)
 docs/              calibration.md, original-brief.md
 sql/               01_load  02_validate  03_fact  04_dims  05_kpi_views
-src/fairtargets/   calendar.py  generator.py  warehouse.py  forecast.py
-                   targets.py  incentives.py  export_powerbi.py  scorecard.py  run_all.py
-tests/             test_generator.py  test_calendar.py  test_validation.py  test_answer_key_isolation.py
-reports/           REPORT.md  figures/  powerbi/ (CSVs, MEASURES.md, LAYOUT.md)
+src/fairtargets/   config.py  calibration.py  calendar.py  generator.py  warehouse.py  forecast.py
+                   targets.py  incentives.py  effects.py  figures.py  export_powerbi.py  scorecard.py  run_all.py
+scripts/           extract_sfda_prices.py (one-off copy of SFDA prices from Project A)
+tests/             test_generator  test_calendar  test_validation  test_forecast  test_incentives
+                   test_answer_key_isolation
+reports/           REPORT.md (memo)  SCORECARD.md  figures/  results/ (JSON/CSV)
+reports/powerbi/   fair_targets.pbix  8 CSVs  MEASURES.md  LAYOUT.md  VALIDATION.md
 ```
 
-Run everything: `python -m fairtargets.run_all --seed 42` then `pytest`.
+Run everything (about 1 minute): `pip install -e .` once, then `python -m fairtargets.run_all --seed 42` and `pytest`.
 
 ## 7. Setup (PowerShell)
 
@@ -126,11 +146,11 @@ pip install -r requirements.txt
 
 ## 8. Plan (5 days)
 
-- [ ] **Day 1: Calibrate + generate.** Verify sources and write `docs/calibration.md`. Write the seeded generator with planted effects, messiness and the answer key. Tests: same seed gives identical output; each effect is present; the messiness is present.
-- [ ] **Day 2: Warehouse.** Calendar dimension; SQL load → validate → fact → dims → KPI views. Tests: validation catches every injected issue; returns are kept; restatements resolve to the latest file.
-- [ ] **Day 3: Forecast.** Seasonal naive, ETS, LightGBM; rolling-origin backtest; WAPE and bias by product; Gregorian vs Hijri comparison.
-- [ ] **Day 4: Fairness + incentives.** Target percentiles, flags, two-rule Monte Carlo, then the final scorecard against the answer key.
-- [ ] **Day 5: Handoff + write-up.** Power BI export, MEASURES.md, LAYOUT.md, REPORT.md, and a README results section with measured numbers only.
+- [x] **Day 1: Calibrate + generate.** Verify sources and write `docs/calibration.md`. Write the seeded generator with planted effects, messiness and the answer key. Tests: same seed gives identical output; each effect is present; the messiness is present.
+- [x] **Day 2: Warehouse.** Calendar dimension; SQL load → validate → fact → dims → KPI views. Tests: validation catches every injected issue; returns are kept; restatements resolve to the latest file.
+- [x] **Day 3: Forecast.** Seasonal naive, ETS, LightGBM; rolling-origin backtest; WAPE and bias by product; Gregorian vs Hijri comparison.
+- [x] **Day 4: Fairness + incentives.** Target percentiles, flags, two-rule Monte Carlo, then the final scorecard against the answer key.
+- [x] **Day 5: Handoff + write-up.** Power BI export, MEASURES.md, LAYOUT.md, REPORT.md, and a README results section with measured numbers only.
 
 ## 9. Definition of done
 
@@ -144,6 +164,8 @@ pip install -r requirements.txt
 - Hierarchical forecast reconciliation (territory → region → country).
 - Primary vs secondary sales and distributor inventory modelling.
 - Tender / institutional channel, call-activity simulation, HCP decile targeting.
+- Calibrated 12-month forecast intervals (the current one-month-error bootstrap is too narrow; see Results).
+- Results across several seeds, not just seed 42.
 - Management-overlay forecast value added (FVA).
 - A deployed interactive app (Streamlit).
 
@@ -152,6 +174,50 @@ pip install -r requirements.txt
 - Findings apply to simulated data. Planted effects are cleaner than reality, and having an answer key makes recovery easier than in practice.
 - Do not claim real-world accuracy, real incentive outcomes, or that Nakheel Pharma or its brands exist.
 
-## 12. Results
+## 12. Results (seed 42; every number from `reports/results/`)
 
-*Filled in only after the pipeline runs.*
+Full memo: [`reports/REPORT.md`](reports/REPORT.md). Scorecard: [`reports/SCORECARD.md`](reports/SCORECARD.md).
+
+**Data validation.** The feed has 29,134 rows in 37 delivery files. The SQL validation:
+- quarantined 14 invalid rows (8 negative sales, 6 unknown product codes)
+- removed 200 duplicates
+- resolved 117 restatements
+- kept 4,034 valid negative returns
+
+The resulting fact table equals the true ledger to the cent (tested).
+
+**Forecasting.** Rolling-origin backtest, 3,600 forecasts per model, 1–3 months ahead:
+
+| Model | WAPE | Bias | WAPE in Feb–Apr 2025 (Ramadan/Eid) |
+|---|---|---|---|
+| Seasonal naive | 27.0% | +1.5% | 31.5% |
+| ETS | 12.5% | +1.8% | 15.1% |
+| LightGBM, Gregorian only | 11.1% | +1.3% | 12.1% |
+| LightGBM, Hijri-aware | **10.4%** | +2.2% | **10.3%** |
+
+The 12-month recursive LightGBM forecast overshot 2025 by 26.5%, mainly Semavia, so target setting uses it only after scaling to the national budget.
+
+**Effect recovery.** 5 of 6 planted effects were recovered, along with all data-quality checks:
+- Ramadan daily effect: estimated 0.87× vs 0.85× planted
+- generic entry month: 20 vs 20
+- stock-out months: 3/3 found, no false flags
+- vacancy effect: 0.654× vs 0.65×
+
+**Unfair targets: partially recovered.** All 5 planted territories were flagged, each in the correct direction, but 22 flags in total means 23% precision. The cause is overconfident forecast ranges: only 15% of actual 2025 territory totals fell inside P10–P90. The first run, without budget scaling, caught only 1 of 5; that change is disclosed in the memo.
+
+**Incentive rules** (10,000 simulated years):
+
+| | Last year + X% | Potential-based |
+|---|---|---|
+| Payout Gini | 0.10 | 0.37 |
+| Reps on zero payout | 0.3% | 25.2% |
+| Fairness spread (IQR of target percentiles) | 73 pp | 100 pp |
+
+In this simulation the pure potential-based split is worse, so the memo recommends a corrected "last year + X%" rule.
+
+**Power BI.** The dashboard reproduces the warehouse figures exactly (`reports/powerbi/VALIDATION.md`):
+- 2025 sales SAR 506.73M at 92.0% attainment
+- payout at 57.7% of the bonus budget
+- 22 flagged territories under the issued targets
+
+Its WAPE card is **value-weighted** and one month ahead: 13.4% for the Hijri-aware LightGBM, against 46.1% for seasonal naive. The table above uses unit-based WAPE pooled over 1–3 months, so the two figures differ by design.

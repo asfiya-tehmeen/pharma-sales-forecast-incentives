@@ -1,0 +1,16 @@
+[project]
+name = "fairtargets"
+version = "0.1.0"
+description = "Ramadan-aware forecasting and incentive fairness on a simulated GCC pharma affiliate"
+requires-python = ">=3.11"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

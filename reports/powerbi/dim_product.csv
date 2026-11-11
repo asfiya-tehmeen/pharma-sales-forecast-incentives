@@ -1,0 +1,4 @@
+product_code,product_name,lifecycle,molecule_class,list_price_sar,launch_month,generic_entry_month
+CAR,Cardivex,stable control,statin,43.45,,
+GLU,Glucora,"mature brand, generic entry",DPP-4 inhibitor,84.2,,2024-08-01
+SEM,Semavia,launch with stock-outs,GLP-1 injectable,450.05,2023-07-01,

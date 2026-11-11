@@ -1,0 +1,68 @@
+{
+  "rows": [
+    {
+      "effect": "E1 Ramadan / pre-Ramadan / Eid (Hijri)",
+      "planted": "ramadan x0.85, pre_ramadan x1.1, eid x0.4",
+      "estimated": "ramadan x0.87 (95% CI 0.82-0.92), pre_ramadan x1.07 (95% CI 0.99-1.15), eid x0.41 (95% CI 0.26-0.65); Hijri LightGBM WAPE in Feb-Apr 2025 10.3% vs Gregorian 12.1%",
+      "status": "recovered"
+    },
+    {
+      "effect": "E2 Semavia launch ramp",
+      "planted": "midpoint month 18.0, scale 3.5",
+      "estimated": "midpoint month 18.1, scale 3.45",
+      "status": "recovered"
+    },
+    {
+      "effect": "E3 Semavia stock-out months",
+      "planted": "months [21, 22, 33]",
+      "estimated": "flagged [('SEM', 21), ('SEM', 22), ('SEM', 33)]; precision 100%, recall 100%",
+      "status": "recovered"
+    },
+    {
+      "effect": "E4 Glucora generic entry",
+      "planted": "month 20, max volume loss 45%, tau 4.0",
+      "estimated": "month 20, max volume loss 47%, tau 5.5",
+      "status": "recovered"
+    },
+    {
+      "effect": "E5 Rep vacancies",
+      "planted": "4 windows, sales x0.65",
+      "estimated": "4/4 windows matched from roster; sales x0.654 (95% CI 0.636-0.674)",
+      "status": "recovered"
+    },
+    {
+      "effect": "E6 Unfairly targeted territories",
+      "planted": "5 territories (3 easy, 2 hard)",
+      "estimated": "22 flagged; precision 23%, recall 100%, direction correct 5/5; false positives ['KSA-BAH-01', 'KSA-EAS-01', 'KSA-EAS-02', 'KSA-HAI-01', 'KSA-JAZ-01', 'KSA-MAK-02', 'KSA-MAK-03', 'KSA-MAK-07', 'KSA-MED-01', 'KSA-NAJ-01', 'KSA-NBR-01', 'KSA-QAS-01', 'KSA-RIY-02', 'KSA-RIY-03', 'KSA-RIY-07', 'UAE-AUH-01', 'UAE-DXB-03']; missed none",
+      "status": "partially recovered"
+    },
+    {
+      "effect": "Feed messiness (data validation)",
+      "planted": "quarantined_non_positive_sale 8; quarantined_unknown_product 6; duplicate_rows_removed 200; restated_lines_resolved 117; valid_return_lines_kept 4034",
+      "estimated": "quarantined_non_positive_sale 8; quarantined_unknown_product 6; duplicate_rows_removed 200; restated_lines_resolved 117; valid_return_lines_kept 4034",
+      "status": "recovered"
+    }
+  ],
+  "unfair_precision": 0.22727272727272727,
+  "unfair_recall": 1.0,
+  "unfair_false_positives": [
+    "KSA-BAH-01",
+    "KSA-EAS-01",
+    "KSA-EAS-02",
+    "KSA-HAI-01",
+    "KSA-JAZ-01",
+    "KSA-MAK-02",
+    "KSA-MAK-03",
+    "KSA-MAK-07",
+    "KSA-MED-01",
+    "KSA-NAJ-01",
+    "KSA-NBR-01",
+    "KSA-QAS-01",
+    "KSA-RIY-02",
+    "KSA-RIY-03",
+    "KSA-RIY-07",
+    "UAE-AUH-01",
+    "UAE-DXB-03"
+  ],
+  "unfair_missed": []
+}
