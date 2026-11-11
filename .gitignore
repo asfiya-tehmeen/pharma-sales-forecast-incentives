@@ -9,3 +9,9 @@ data/raw/*
 !data/raw/.gitkeep
 data/clean/*
 !data/clean/.gitkeep
+
+# Personal notes, old plan versions and AI prompts (local only)
+my_README*.md
+NEXT_PROMPT.md
+*_PROMPT.md
+docs/my_original-brief.md
